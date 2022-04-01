@@ -11,3 +11,33 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.Cart-Widget {
+  margin-right: auto;
+  border-width: 0;
+  background-color: transparent;
+}
+
+@media only screen and (min-width: 575px) {
+  .Cart-Widget {
+    margin-right: 0;
+  }
+}
+
+.Nav-Bar {
+  background-color: #FFDB8A;
+}
+
+.Logo {
+  width: 100%;
+  object-fit: cover;
+}
+
+.welcome {
+  padding: 1rem;
+  background-color: #FBF0D5;
+  font-size:0.9rem;
+  text-align: center;
+}
+
+/* #C49E56 */
