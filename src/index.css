@@ -40,4 +40,39 @@ code {
   text-align: center;
 }
 
-/* #C49E56 */
+#number-input {
+  border: solid #FBF0D5;
+  border-width: 2px 0;
+  height: 2rem;
+  text-align: center;
+}
+
+#number-input:focus-visible {
+  outline: none;
+}
+
+.button-count {
+  background: #fff;
+  cursor: pointer;
+
+  border: 2px solid #FBF0D5;
+  font-size: 2rem;
+  height: 2rem;
+  width: 2rem;
+
+}
+
+.button-count:hover {
+  background-color: #FBF0D5;
+  transition: 0.2s;
+  color: #FFF;
+}
+
+.input-group-text {
+  background-color: #FBF0D5;
+  color: #FFF;
+}
+
+.btn {
+  width: auto;
+}
