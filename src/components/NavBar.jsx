@@ -10,7 +10,7 @@ export default function NavBar()  {
     <>
         <Navbar expand="sm" className="Nav-Bar">
             <Container fluid>
-                <Navbar.Brand href="#home">VenChi Bake</Navbar.Brand>
+                <Navbar.Brand>VenChi Bake</Navbar.Brand>
                 { width <= 575 ? 
                     <><CartWidget />< OffCanvasNav /></> : 
                     <><NavOptions /><CartWidget /></>}
@@ -46,7 +46,7 @@ function NavOptions() {
     return (
     <>
         <Nav className="me-auto">
-            <Nav.Link href="#home">Inicio</Nav.Link>
+            <Nav.Link>Inicio</Nav.Link>
             <NavDropdown title="Productos" id="basic-nav-dropdown">
                 <NavDropdown.Item href="#action/3.1">Salados</NavDropdown.Item>
                 <NavDropdown.Item href="#action/3.2">Dulces</NavDropdown.Item>

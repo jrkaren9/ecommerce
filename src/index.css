@@ -12,18 +12,6 @@ code {
     monospace;
 }
 
-.Cart-Widget {
-  margin-right: auto;
-  border-width: 0;
-  background-color: transparent;
-}
-
-@media only screen and (min-width: 575px) {
-  .Cart-Widget {
-    margin-right: 0;
-  }
-}
-
 .Nav-Bar {
   background-color: #FFDB8A;
 }

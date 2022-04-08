@@ -1,0 +1,15 @@
+.CartWidget {
+    margin-right: auto;
+    border-width: 0;
+    background-color: transparent;
+  }
+  
+@media only screen and (min-width: 575px) {
+    .CartWidget {
+        margin-right: 10px;
+    }
+}
+
+.colorIcon {
+    color: #000;
+}
