@@ -7,7 +7,7 @@ export default  function CartWidget() {
     return (
         <>
             <button type="button" aria-expanded="false" aria-label="Cart" className={s.CartWidget} > 
-                < AiOutlineShoppingCart className={s.colorIcon} />
+                < AiOutlineShoppingCart className={s.colorIcon} size={25}/>
             </button>
         </>
     );
