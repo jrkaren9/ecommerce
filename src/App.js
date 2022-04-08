@@ -1,7 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import Footer from './components/Footer';
-import ItemListContainer from './components/ItemListContainer';
+import ItemListContainer from './components/Items/ItemListContainer';
 import NavBar from './components/NavBar';
 
 export default function App() {
