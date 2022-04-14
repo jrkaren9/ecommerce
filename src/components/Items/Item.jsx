@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Card } from 'react-bootstrap';
-import ItemCount from './ItemCount';
 
 export default  function Item({ item, onAdd }) {
     
@@ -13,7 +12,6 @@ export default  function Item({ item, onAdd }) {
                 <Card.Text>
                     {item.text}
                 </Card.Text>
-                <ItemCount stock = {item.stock} initial = {1} onAdd = {onAdd} />
             </Card.Body>
         </Card>
         </>

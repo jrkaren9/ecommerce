@@ -1,4 +1,4 @@
-const products = [
+export const products = [
     {
         id: 1,
         name: 'Pan de Jamón',
@@ -19,4 +19,30 @@ const products = [
     }
 ]
 
-export default products;
+export const getProducts = (id) => {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            if(id) {
+                    resolve(products.filter( item => item.categoria == id ));
+                }
+                else {
+                    resolve(products);
+                }
+
+        }, 2000);
+    });
+};
+
+export const getProduct = (id) => {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            if(id) {
+                    resolve(products.filter( item => item.id == id ));
+                }
+                else {
+                    resolve(products);
+                }
+
+        }, 2000);
+    });
+};
