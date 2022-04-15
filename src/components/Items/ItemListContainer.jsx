@@ -5,18 +5,18 @@ import { getProducts } from '../products.js'
 import { useParams } from 'react-router-dom';
 import { CardGroup } from 'react-bootstrap';
 
-export default  function ItemListContainer({ greeting }) {
+export default  function ItemListContainer() {
 
     const [items, setitems] = useState([])
-    const { id } = useParams;
+    const { categoryId } = useParams();
 
     useEffect(() => {
 
-        getProducts(id)
+        getProducts(categoryId)
             .then(res => setitems(res))
             .catch(error => console.log(error));
 
-    }, [id])
+    }, [categoryId])
 
     const onAdd = (count) => {
         alert("Agregaste " + count + " items al carrito")
@@ -24,7 +24,6 @@ export default  function ItemListContainer({ greeting }) {
     
     return (
         <>
-            <p className='d-flex justify-content-center welcome'>{greeting}</p>
             <CardGroup>
                 <ItemList items={items} onAdd = {onAdd}/>
             </CardGroup>

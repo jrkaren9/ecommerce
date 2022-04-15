@@ -5,7 +5,7 @@ export default  function ItemList({ items, onAdd }) {
     
     return (
         <>
-            {items.map(item => <Item item = {item} onAdd = {onAdd} />)}
+            {items.map(item => <Item key = {item.id} item = {item} onAdd = {onAdd} />)}
         </>
     );
 }

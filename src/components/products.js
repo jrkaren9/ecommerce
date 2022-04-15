@@ -6,7 +6,7 @@ export const products = [
         price: '$2.00',
         stock: 0,
         img: '',
-        categpry: 'Salado'
+        category: 'Salado'
     },
     {
         id: 2,
@@ -15,7 +15,7 @@ export const products = [
         price: '$1.00',
         stock: 5,
         img: '',
-        categpry: 'Dulce'
+        category: 'Dulce'
     }
 ]
 
@@ -23,7 +23,7 @@ export const getProducts = (id) => {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
             if(id) {
-                    resolve(products.filter( item => item.categoria == id ));
+                    resolve(products.filter( item => item.category == id ));
                 }
                 else {
                     resolve(products);
@@ -36,13 +36,7 @@ export const getProducts = (id) => {
 export const getProduct = (id) => {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
-            if(id) {
-                    resolve(products.filter( item => item.id == id ));
-                }
-                else {
-                    resolve(products);
-                }
-
+            resolve(products.filter( item => item.id == id )[0]);
         }, 2000);
     });
 };

@@ -12,14 +12,13 @@ export default function App() {
   return (
     <>
       <BrowserRouter>
-      <NavBar />
+        <NavBar />
         <Routes>
-          <Route exact path="/" element={ItemListContainer}/>
+          <Route exact path="/" element={ < ItemListContainer /> }/>
+          <Route path="/category/:categoryId" element={ < ItemListContainer /> }/>
+          <Route path="/item/:id" element={ < ItemDetailContainer /> }/>
         </Routes>
-      <ItemListContainer 
-        greeting='Disfruta de todos nuestros sabores y productos artesanales hechos con amor'/>
-      <ItemDetailContainer />
-      <Footer />
+        <Footer />
       </BrowserRouter>
     </>
   );

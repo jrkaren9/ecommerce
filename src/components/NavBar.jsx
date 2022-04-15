@@ -4,6 +4,7 @@ import CartWidget from './CartWidget';
 
 export default function NavBar()  {
 
+    const greeting = 'Disfruta de todos nuestros sabores y productos artesanales hechos con amor'
     const { width } = useViewport();
 
     return (
@@ -16,6 +17,7 @@ export default function NavBar()  {
                     <><NavOptions /><CartWidget /></>}
             </Container>
         </Navbar>
+        <p className='d-flex justify-content-center welcome'>{greeting}</p>
     </>
     );
 }
@@ -48,11 +50,11 @@ function NavOptions() {
         <Nav className="me-auto">
             <Nav.Link>Inicio</Nav.Link>
             <NavDropdown title="Productos" id="basic-nav-dropdown">
-                <NavDropdown.Item href="#action/3.1">Salados</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.2">Dulces</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.3">Navideños</NavDropdown.Item>
+                <NavDropdown.Item href = "/category/Salado">Salados</NavDropdown.Item>
+                <NavDropdown.Item href = "/category/Dulce">Dulces</NavDropdown.Item>
+                <NavDropdown.Item href = "/category/Navideño">Navideños</NavDropdown.Item>
                 <NavDropdown.Divider />
-                <NavDropdown.Item href="#action/3.4">Todos</NavDropdown.Item>
+                <NavDropdown.Item href = "/">Todos</NavDropdown.Item>
             </NavDropdown>
         </Nav>
     </>
