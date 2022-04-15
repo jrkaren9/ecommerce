@@ -10,7 +10,15 @@ export default  function ItemDetail({ item, onAdd }) {
         <Row id={s.ItemDetail}>
             <Col xs={8} id={s.MainInfo}>
                 <h2>{item.name}</h2>
-                <img src={item.img} alt={"Imagen del producto: " + item.name} />
+                <Row>
+                    <Col xs={3}>
+                    
+                    </Col>
+                    
+                    <Col xs={8} className="d-flex justify-content-center">
+                        <img src={item.img} alt={"Imagen del producto: " + item.name} />
+                    </Col>
+                </Row>
                 <p>{item.text}</p>
             </Col>
             
