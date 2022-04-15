@@ -7,10 +7,10 @@ export default  function ItemDetailContainer() {
 
     const [item, setitem] = useState({})
     const [loading, setLoading] = useState(true)
-    const { id } = useParams;
+    const { id } = useParams();
 
     useEffect(() => {
-        getProduct(1)
+        getProduct(id)
         .then((res) => setitem(res))
         .catch((error) => console.log(error))
         .finally(() => setLoading(false));

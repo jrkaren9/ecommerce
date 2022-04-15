@@ -5,31 +5,31 @@
     text-align: center;
   }
   
-  #numberInput:focus-visible {
-    outline: none;
-  }
-  
-  .buttonCount {
-    background: #fff;
-    cursor: pointer;
-  
-    border: 2px solid #FBF0D5;
-    font-size: 1rem;
-    height: 2rem;
-    width: 2rem;
-  }
-  
-  .buttonCount:hover {
-    background-color: #FBF0D5;
-    transition: 0.2s;
-    color: #FFF;
-  }
-  
-  .input-group-text {
-    background-color: #FBF0D5;
-    color: #FFF;
-  }
-  
-  .btn {
-    width: auto;
-  }
+#numberInput:focus-visible {
+  outline: none;
+}
+
+.buttonCount {
+  background: #fff;
+  cursor: pointer;
+
+  border: 2px solid #FBF0D5;
+  font-size: 1rem;
+  height: 2rem;
+  width: 2rem;
+}
+
+.buttonCount:hover {
+  background-color: #FBF0D5;
+  transition: 0.2s;
+  color: #FFF;
+}
+
+.input-group-text {
+  background-color: #FBF0D5;
+  color: #FFF;
+}
+
+.btn {
+  width: auto;
+}

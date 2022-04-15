@@ -1,0 +1,16 @@
+#ItemDetail {
+    margin: 1rem;
+}
+
+#MainInfo {
+    padding: 0 1rem;
+}
+
+#BuySectionContainer {
+
+}
+
+#BuySection {
+    padding: 1rem;
+    border: 1px solid black;
+}
