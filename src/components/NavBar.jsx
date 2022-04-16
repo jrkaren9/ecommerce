@@ -48,13 +48,13 @@ function NavOptions() {
     return (
     <>
         <Nav className="me-auto">
-            <Nav.Link>Inicio</Nav.Link>
+            <Nav.Link href="/">Inicio</Nav.Link>
             <NavDropdown title="Productos" id="basic-nav-dropdown">
-                <NavDropdown.Item href = "/category/Salado">Salados</NavDropdown.Item>
-                <NavDropdown.Item href = "/category/Dulce">Dulces</NavDropdown.Item>
-                <NavDropdown.Item href = "/category/Navideño">Navideños</NavDropdown.Item>
+                <NavDropdown.Item href="/category/Salado">Salados</NavDropdown.Item>
+                <NavDropdown.Item href="/category/Dulce">Dulces</NavDropdown.Item>
+                <NavDropdown.Item href="/category/Navideño">Navideños</NavDropdown.Item>
                 <NavDropdown.Divider />
-                <NavDropdown.Item href = "/">Todos</NavDropdown.Item>
+                <NavDropdown.Item href="/">Todos</NavDropdown.Item>
             </NavDropdown>
         </Nav>
     </>

@@ -35,7 +35,7 @@ export default  function ItemCount({ stock, initial, onAdd }) {
 
     return (
         <>
-        <Row xs={12} className="justify-content-center">
+        <Row xs={8} className="justify-content-center">
             <button type="button" 
                 className={s.buttonCount + " d-flex align-items-center justify-content-center col-2"} 
                 disabled={btnDisabled} onClick={substract}>

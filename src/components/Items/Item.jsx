@@ -1,19 +1,27 @@
 import React from 'react';
-import { Card } from 'react-bootstrap';
+import { Button, Card, Col, Row } from 'react-bootstrap';
+import s from './Item.module.css';
 
-export default  function Item({ item, onAdd }) {
+export default  function Item({ item }) {
     
     return (
         <>
-        <Card style={{ width: '18rem' }}>
-            <Card.Img variant="top" src="holder.js/100px180" />
+        <Col xs={true} className="justify-content-center">
+        <Card style={{ width: '18rem' }} className={s.Card}>
+            <Card.Img variant="top" src={ item.all_imgs ? item.all_imgs[0] : item.img } />
             <Card.Body>
                 <Card.Title>{item.name}</Card.Title>
                 <Card.Text>
                     {item.text}
                 </Card.Text>
+                <Row className="justify-content-end">
+                    <Col xs={5}>
+                        <Button variant="primary">Comprar</Button>
+                    </Col>
+                </Row>
             </Card.Body>
         </Card>
+        </Col>
         </>
     );
 }

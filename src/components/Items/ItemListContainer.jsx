@@ -3,7 +3,6 @@ import Logo from "../imgs/venchilogo.jpg"
 import ItemList from './ItemList';
 import { getProducts } from '../products.js'
 import { useParams } from 'react-router-dom';
-import { CardGroup } from 'react-bootstrap';
 
 export default  function ItemListContainer() {
 
@@ -24,12 +23,10 @@ export default  function ItemListContainer() {
     
     return (
         <>
-            <CardGroup>
-                <ItemList items={items} onAdd = {onAdd}/>
-            </CardGroup>
-            <div>
+            <ItemList items={items}/>
+            {/* <div>
                 <img src={Logo} alt="Venchi Logo" focusable="false" aria-hidden="true" className="Logo" />
-            </div>
+            </div> */}
         </>
     );
 }

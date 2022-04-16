@@ -17,7 +17,7 @@ export default  function ItemDetailContainer() {
 
     }, [id]);
 
-        const onAdd = (count) => {
+    const onAdd = (count) => {
         alert("Agregaste " + count + " items al carrito")
     }
 
