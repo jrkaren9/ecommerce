@@ -80,12 +80,16 @@ export const products = [
     },
     {
         id: 7,
-        name: 'Pan dulce',
-        text: 'Para endulzar tus días',
+        name: 'Pan deli con sésamo negro',
+        text: 'Un clásico para que lo armes como prefieras, con un toque diferente',
         price: '$1.00',
         stock: 5,
-        img: '',
-        category: 'Dulce'
+        img: 'https://i.ibb.co/xYsn4Q9/Pan-Deli-S-samo-Negro-1.jpg',
+        all_imgs: [
+            'https://i.ibb.co/xYsn4Q9/Pan-Deli-S-samo-Negro-1.jpg',
+            'https://i.ibb.co/wSnZ6Py/Pan-Deli-S-samo-Negro-2.jpg'
+        ],
+        category: 'Salado'
     },
     {
         id: 8,

@@ -2,11 +2,13 @@ import React, { useEffect, useState } from 'react';
 import ItemDetail from './ItemDetail';
 import { getProduct } from '../products.js'
 import { useParams } from 'react-router-dom';
+import LoadingMessage from '../LoadingMessage';
 
 export default  function ItemDetailContainer() {
 
-    const [item, setitem] = useState({})
-    const [loading, setLoading] = useState(true)
+    const [item, setitem] = useState({});
+    const [loading, setLoading] = useState(true);
+    const [showCount, setShowCount] = useState(true);
     const { id } = useParams();
 
     useEffect(() => {
@@ -18,14 +20,14 @@ export default  function ItemDetailContainer() {
     }, [id]);
 
     const onAdd = (count) => {
-        alert("Agregaste " + count + " items al carrito")
+        alert("Agregaste " + count + " items al carrito");
+
     }
 
     return (
         <>
             {
-                loading ? (<h1>Cargando productos, espera!</h1>) : 
-                (<ItemDetail item = {item} onAdd = {onAdd} />)
+                loading ? (<LoadingMessage />) : (<ItemDetail item = {item} onAdd = {onAdd} />)
             }
         </>
     );

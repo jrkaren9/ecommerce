@@ -1,4 +1,8 @@
 .Card {
     margin: 10px auto;
+}
 
+.ItemImage {
+    height: 250px;
+    object-fit: cover;
 }

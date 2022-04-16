@@ -1,14 +1,15 @@
 import React from 'react';
-import { Button, Card, Col, Row } from 'react-bootstrap';
+import Row from 'react-bootstrap/Row';
+import { Button, Card, Col } from 'react-bootstrap';
 import s from './Item.module.css';
 
 export default  function Item({ item }) {
-    
+
     return (
         <>
-        <Col xs={true} className="justify-content-center">
+        <Col xs={true} className="justify-content-start">
         <Card style={{ width: '18rem' }} className={s.Card}>
-            <Card.Img variant="top" src={ item.all_imgs ? item.all_imgs[0] : item.img } />
+            <Card.Img variant="top" src={ item.all_imgs ? item.all_imgs[0] : item.img } alt={item.name} className={s.ItemImage}/>
             <Card.Body>
                 <Card.Title>{item.name}</Card.Title>
                 <Card.Text>
@@ -16,7 +17,7 @@ export default  function Item({ item }) {
                 </Card.Text>
                 <Row className="justify-content-end">
                     <Col xs={5}>
-                        <Button variant="primary">Comprar</Button>
+                        <Button variant="primary" href={'/item/' + item.id}>Comprar</Button>
                     </Col>
                 </Row>
             </Card.Body>

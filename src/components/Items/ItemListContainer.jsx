@@ -3,30 +3,26 @@ import Logo from "../imgs/venchilogo.jpg"
 import ItemList from './ItemList';
 import { getProducts } from '../products.js'
 import { useParams } from 'react-router-dom';
+import LoadingMessage from '../LoadingMessage';
 
 export default  function ItemListContainer() {
 
-    const [items, setitems] = useState([])
+    const [items, setitems] = useState([]);
+    const [loading, setLoading] = useState(true);
     const { categoryId } = useParams();
 
     useEffect(() => {
 
         getProducts(categoryId)
             .then(res => setitems(res))
-            .catch(error => console.log(error));
+            .catch(error => console.log(error))
+            .finally(() => setLoading(false));
 
     }, [categoryId])
-
-    const onAdd = (count) => {
-        alert("Agregaste " + count + " items al carrito")
-    }
     
     return (
         <>
-            <ItemList items={items}/>
-            {/* <div>
-                <img src={Logo} alt="Venchi Logo" focusable="false" aria-hidden="true" className="Logo" />
-            </div> */}
+            { loading ? <LoadingMessage /> : <ItemList items={items}/> }
         </>
     );
 }
