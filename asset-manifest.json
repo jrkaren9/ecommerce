@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/ecommerce/static/css/main.f1da9f7a.css",
+    "main.js": "/ecommerce/static/js/main.623ddc2c.js",
+    "static/js/787.750b04f3.chunk.js": "/ecommerce/static/js/787.750b04f3.chunk.js",
+    "static/media/venchilogo.jpg": "/ecommerce/static/media/venchilogo.d3b6e9438a57a5da5380.jpg",
+    "index.html": "/ecommerce/index.html",
+    "main.f1da9f7a.css.map": "/ecommerce/static/css/main.f1da9f7a.css.map",
+    "main.623ddc2c.js.map": "/ecommerce/static/js/main.623ddc2c.js.map",
+    "787.750b04f3.chunk.js.map": "/ecommerce/static/js/787.750b04f3.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f1da9f7a.css",
+    "static/js/main.623ddc2c.js"
+  ]
+}
