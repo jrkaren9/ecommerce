@@ -4,16 +4,21 @@
 }
 
 #MainInfo {
-    padding: 0px;
-}
-
-#BuySectionContainer {
-
+    padding: 0px auto;
 }
 
 #BuySection {
     padding: 1rem;
     border: 1px solid rgb(104, 102, 102, 50%);
+}
+
+.GoCart {
+    width: fit-content;
+    margin: 1rem auto;
+}
+
+.GoCartText {
+    text-align: center;
 }
 
 .ImageShown {

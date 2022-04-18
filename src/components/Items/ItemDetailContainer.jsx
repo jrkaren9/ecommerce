@@ -21,14 +21,13 @@ export default  function ItemDetailContainer() {
 
     const onAdd = (count) => {
         setAmount(count);
-        console.log(count);
-        alert("Agregaste " + amount + " items al carrito");
+        alert("Agregaste " + count + " items al carrito");
     }
 
     return (
         <>
             {
-                loading ? (<LoadingMessage />) : (<ItemDetail item = {item} onAdd = {onAdd} />)
+                loading ? (<LoadingMessage />) : (<ItemDetail item = {item} onAdd = {onAdd} amount={amount}/>)
             }
         </>
     );
