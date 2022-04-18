@@ -1,12 +1,20 @@
-import React, { useState } from 'react';
-import { Row } from 'react-bootstrap';
+import React, { useEffect, useState } from 'react';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 import s from './ItemCount.module.css'
+import Button from 'react-bootstrap/Button';
 
 export default  function ItemCount({ stock, initial, onAdd }) {
 
     const [count, setCount] = useState(initial);
-    let btnDisabled = stock <= 0 ? true : false
-  
+    const [disableAdd, setDisableAdd] = useState(false);
+
+    useEffect(() => {
+        count <= 0 ? setDisableAdd(true) : setDisableAdd(false);
+    }, [count])
+
+    let btnDisabled = stock <= 0
+
     const add = () => {
         if(count < stock)
             setCount(count + 1);      
@@ -17,45 +25,36 @@ export default  function ItemCount({ stock, initial, onAdd }) {
             setCount(count - 1);  
     };
 
-    const validateCount = (value) => {
-        if(value < 0){
-            setCount(0);
-        }
-        else if(value > stock){
-            setCount(count);
-        }
-        else if(value.isNaN){
-            setCount(stock);
-        }
-        else {
-            setCount(parseInt(value));
-        }
-            
-    };
-
     return (
         <>
-        <Row xs={8} className="justify-content-center">
-            <button type="button" 
-                className={s.buttonCount + " d-flex align-items-center justify-content-center col-2"} 
-                disabled={btnDisabled} onClick={substract}>
-                -
-            </button>
-            <input id={s.numberInput} type="number" min="0" value={count} 
-                className="col-5" onChange={e => validateCount(e.target.value)} disabled={btnDisabled}/>
-            <button type="button" 
-                className={s.buttonCount + " d-flex align-items-center justify-content-center outline-white col-2"} 
-                disabled={btnDisabled} onClick={add}>
-                +
-            </button>
+        <Row className="justify-content-center">
+            <Col xs={8} md={6} className={s.NoPadding + " d-flex justify-content-center"} >
+                <button type="button" 
+                    className={s.buttonCount + " d-flex align-items-center justify-content-center col-2"} 
+                    disabled={btnDisabled} onClick={substract}>
+                    -
+                </button>
+                <input id={s.numberInput} type="number" min="0" value={count} 
+                    className="col-8" disabled/>
+                <button type="button" 
+                    className={s.buttonCount + " d-flex align-items-center justify-content-center outline-white col-2"} 
+                    disabled={btnDisabled} onClick={add}>
+                    +
+                </button>
+            </Col>
         </Row>
 
-        <Row xs={12} className="justify-content-center">
-            <button type="button" 
-                className="d-flex align-items-center justify-content-center col-7"
-                disabled={btnDisabled} onClick={() => onAdd(count)}>
-                    Agregar al carrito
-            </button>
+        <Row className="justify-content-center">
+            <Col className={s.NoPadding + " " + s.AfterCount + " d-flex justify-content-center"}>
+                {btnDisabled ? 
+                    (<p>Lo sentimos, por ahora no hay stock</p>) :
+                    (<Button type="button" 
+                        className="d-flex align-items-center justify-content-center"
+                        disabled={disableAdd} onClick={() => onAdd(count)}>
+                            Agregar al carrito
+                    </Button>)
+                }
+            </Col>       
         </Row>
 
         </>

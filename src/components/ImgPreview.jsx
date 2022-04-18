@@ -13,17 +13,21 @@ export default function ImgPreview({ item }) {
 
     return (
         <>
-        <Container>
+        <Container fluid>
             <Row className="justify-content-center">
-                <Col xs={true} className="d-flex flex-column">
+
+                <Col xs={{size:true, order: 'last'}} sm={{order: 'first'}} 
+                    className={s.ImgList + " d-flex flex-sm-column justify-content-center justify-content-sm-start"}>
+
                     {item.all_imgs.map((small_img, index) => (
                         <React.Fragment key={small_img} >
                             <img src={small_img} alt={"Imagen del producto: " + item.name} className={s.PreviewImage + " align-self-end"} onClick={ () => {handleClick(small_img)} }/> 
                         </React.Fragment>
                     ))}
+
                 </Col>
                 
-                <Col xs={8} md={4} className="align-self-start">
+                <Col xs={12} sm={7} md={4} className="d-flex justify-content-center justify-content-sm-start">
                     <img src={imgURL} alt={"Imagen del producto: " + item.name} className={s.ImageShown + " justify-content-center"}/>
                 </Col>
 
@@ -31,6 +35,7 @@ export default function ImgPreview({ item }) {
                     <h2>{item.name}</h2>
                     <p>{item.text}</p>
                 </Col>    
+
             </Row>  
         </Container>
         </>

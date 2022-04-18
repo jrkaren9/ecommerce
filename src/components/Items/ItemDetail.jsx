@@ -6,8 +6,8 @@ import ImgPreview from '../ImgPreview';
 import ItemCount from './ItemCount';
 import s from './ItemDetail.module.css'
 
-
 export default  function ItemDetail({ item, onAdd }) {
+
     return (
         <>
         <Container id={s.ItemDetail}>

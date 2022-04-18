@@ -8,7 +8,7 @@ export default  function ItemDetailContainer() {
 
     const [item, setitem] = useState({});
     const [loading, setLoading] = useState(true);
-    const [showCount, setShowCount] = useState(true);
+    const [amount, setAmount] = useState(0);
     const { id } = useParams();
 
     useEffect(() => {
@@ -20,8 +20,9 @@ export default  function ItemDetailContainer() {
     }, [id]);
 
     const onAdd = (count) => {
-        alert("Agregaste " + count + " items al carrito");
-
+        setAmount(count);
+        console.log(count);
+        alert("Agregaste " + amount + " items al carrito");
     }
 
     return (

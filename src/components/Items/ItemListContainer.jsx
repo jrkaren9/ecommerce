@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import Logo from "../imgs/venchilogo.jpg"
 import ItemList from './ItemList';
 import { getProducts } from '../products.js'
 import { useParams } from 'react-router-dom';
@@ -12,17 +11,18 @@ export default  function ItemListContainer() {
     const { categoryId } = useParams();
 
     useEffect(() => {
-
+        setLoading(true);
+    
         getProducts(categoryId)
             .then(res => setitems(res))
             .catch(error => console.log(error))
-            .finally(() => setLoading(false));
+            .finally(() => { setLoading(false) });
 
-    }, [categoryId])
+    }, [categoryId]);
     
     return (
         <>
-            { loading ? <LoadingMessage /> : <ItemList items={items}/> }
+            { loading ? (<LoadingMessage />) : (<ItemList items={items}/>) }
         </>
     );
 }

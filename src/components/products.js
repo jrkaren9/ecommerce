@@ -106,7 +106,7 @@ export const getProducts = (id) => {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
             if(id) {
-                    resolve(products.filter( item => item.category == id ));
+                    resolve(products.filter( item => item.category === id ));
                 }
                 else {
                     resolve(products);
@@ -119,7 +119,7 @@ export const getProducts = (id) => {
 export const getProduct = (id) => {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
-            resolve(products.filter( item => item.id == id )[0]);
+            resolve(products.find(item => item.id === Number(id)));
         }, 2000);
     });
 };

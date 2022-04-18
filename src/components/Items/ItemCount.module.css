@@ -12,7 +12,6 @@
 .buttonCount {
   background: #fff;
   cursor: pointer;
-
   border: 2px solid #FBF0D5;
   font-size: 1rem;
   height: 2rem;
@@ -33,3 +32,14 @@
 .btn {
   width: auto;
 }
+
+.NoPadding {
+  padding: 0;
+  max-width: 150px;
+}
+
+.AfterCount {
+  margin-top: 1rem;
+  text-align: center;
+}
+

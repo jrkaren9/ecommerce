@@ -1,5 +1,6 @@
 import React from 'react';
 import { Navbar, Offcanvas, Container, Nav, NavDropdown } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import CartWidget from './CartWidget';
 
 export default function NavBar()  {
@@ -11,7 +12,7 @@ export default function NavBar()  {
     <>
         <Navbar expand="sm" className="Nav-Bar">
             <Container fluid>
-                <Navbar.Brand>VenChi Bake</Navbar.Brand>
+                <Navbar.Brand as={Link} to="/">VenChi Bake</Navbar.Brand>
                 { width <= 575 ? 
                     <><CartWidget />< OffCanvasNav /></> : 
                     <><NavOptions /><CartWidget /></>}
@@ -48,13 +49,13 @@ function NavOptions() {
     return (
     <>
         <Nav className="me-auto">
-            <Nav.Link href="/">Inicio</Nav.Link>
+            <Nav.Link as={Link} to="/">Inicio</Nav.Link>
             <NavDropdown title="Productos" id="basic-nav-dropdown">
-                <NavDropdown.Item href="/category/Salado">Salados</NavDropdown.Item>
-                <NavDropdown.Item href="/category/Dulce">Dulces</NavDropdown.Item>
-                <NavDropdown.Item href="/category/Navideño">Navideños</NavDropdown.Item>
+                <NavDropdown.Item as={Link} to='/category/Salado'>Salados</NavDropdown.Item>
+                <NavDropdown.Item as={Link} to="/category/Dulce">Dulces</NavDropdown.Item>
+                <NavDropdown.Item as={Link} to="/category/Navideño">Navideños</NavDropdown.Item>
                 <NavDropdown.Divider />
-                <NavDropdown.Item href="/">Todos</NavDropdown.Item>
+                <NavDropdown.Item as={Link} to="/">Todos</NavDropdown.Item>
             </NavDropdown>
         </Nav>
     </>

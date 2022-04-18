@@ -2,6 +2,7 @@ import React from 'react';
 import Row from 'react-bootstrap/Row';
 import { Button, Card, Col } from 'react-bootstrap';
 import s from './Item.module.css';
+import { Link } from 'react-router-dom';
 
 export default  function Item({ item }) {
 
@@ -17,7 +18,7 @@ export default  function Item({ item }) {
                 </Card.Text>
                 <Row className="justify-content-end">
                     <Col xs={5}>
-                        <Button variant="primary" href={'/item/' + item.id}>Comprar</Button>
+                        <Button variant="primary" as={Link} to={'/item/' + item.id}>Comprar</Button>
                     </Col>
                 </Row>
             </Card.Body>
