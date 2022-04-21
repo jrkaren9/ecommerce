@@ -112,7 +112,7 @@ export const getProducts = (id) => {
                     resolve(products);
                 }
 
-        }, 2000);
+        }, 1000);
     });
 };
 
@@ -120,6 +120,6 @@ export const getProduct = (id) => {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
             resolve(products.find(item => item.id === Number(id)));
-        }, 2000);
+        }, 1000);
     });
 };

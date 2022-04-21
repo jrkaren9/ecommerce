@@ -13,13 +13,15 @@ export default  function CartWidget() {
     }
     
     return (
-        <> 
-            <span>{itemsAmount}</span>
-            <button type="button" aria-expanded="false" aria-label="Cart" className={s.CartWidget} > 
-            <Link to="/cart">
-                < AiOutlineShoppingCart className={s.colorIcon} size={25} />
-            </Link>
-            </button>
+        <> {cart.length > 0 &&
+            <React.Fragment>
+                <span>{itemsAmount}</span>
+                <button type="button" aria-expanded="false" aria-label="Cart" className={s.CartWidget} > 
+                <Link to="/cart">
+                    < AiOutlineShoppingCart className={s.colorIcon} size={25} />
+                </Link>
+                </button>
+            </React.Fragment>}
         </>
     );
 }

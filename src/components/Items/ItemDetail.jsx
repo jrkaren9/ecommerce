@@ -12,7 +12,7 @@ export default  function ItemDetail({ item, onAdd, amount }) {
 
     return (
         <>
-        <Container id={s.ItemDetail}>
+        <Container id={s.ItemDetail} fluid>
             <Row className="justify-content-center"> 
                 <Col xs={10} sm={10} md={8} id={s.MainInfo} >
                     <ImgPreview item={item}/>

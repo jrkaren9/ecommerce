@@ -4,7 +4,7 @@ import Col from 'react-bootstrap/Col';
 import s from './ItemCount.module.css'
 import Button from 'react-bootstrap/Button';
 
-export default  function ItemCount({ stock, initial, onAdd }) {
+export default function ItemCount({ stock, initial, onAdd }) {
 
     const [count, setCount] = useState(initial);
     const [disableAdd, setDisableAdd] = useState(false);

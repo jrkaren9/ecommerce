@@ -1,5 +1,9 @@
-#LoadingMessage {
+#LoadingMessage, #EmptyCart {
     height: 40vh;
+}
+
+#ButtonHome {
+    width: 150px;
 }
 
 h1 {
