@@ -1,47 +1,82 @@
 import Button from 'react-bootstrap/Button';
 import React, { useContext, useEffect, useState } from 'react'
 import { CartContext } from './CartContext'
-import { Col, Container, Row } from 'react-bootstrap';
-import ItemCount from './Items/ItemCount';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 import EmptyCart from './EmptyCart';
+import s from './Cart.module.css'
 
 export default function Cart() {
 
-    const { cart, buyAll, removeFromCart } = useContext(CartContext);
-    const [total, setTotal] = useState(0);
+    const { cart, buyAll, removeFromCart, getTotalItems } = useContext(CartContext);
+    const [total, setTotal] = useState("$0.00");
+    const [totalItems, setTotalItems] = useState(0)
 
     useEffect(() => {
         let value = cart.reduce( (total, item) => {
             return total + Number(item.price.replace('$', ''))*item.count
         }, 0);
 
-        setTotal(value);
+        setTotal("$" + parseFloat(value).toFixed(2));
+
+        setTotalItems(getTotalItems());
     }, [cart]);
 
     return (
         <>
         {cart.length > 0 &&
         <React.Fragment>
-            <Container> {
-                cart.map(item => 
-                    <Row key={item.id} className="justify-content-center align-items-center">
-                        <Col xs={6}>
-                            {item.name}
+            <Container id={s.ItemsList} className="col-12 col-sm-10"> 
+                <Row id={s.ItemHeader} className="justify-content-center align-items-center">
+                    <Col sm={true} className="d-none d-sm-block">
+                        <p><strong>Producto</strong></p>
+                    </Col>
+                    <Col sm={2} lg={1} className="d-none d-sm-block">
+                        <p><strong>#</strong></p>
+                    </Col>
+                    <Col sm={2} lg={1} className="d-none d-sm-block">
+                        <p><strong>Costo</strong></p>
+                    </Col>
+                    <Col sm={2} lg={1} className="d-none d-sm-block">
+                    </Col>
+                </Row>
+                {cart.map(item => 
+                    <Row key={item.id} className={s.ItemRow + " justify-content-center align-items-center"}>
+                        <Col xs={12} sm={true} className={s.ItemDetail}>
+                            <p>{item.name}</p>
                         </Col>
-                        <Col xs={1}>
-                            {item.count}
+                        <Col xs={3} sm={2} lg={1} className={s.ItemDetail}>
+                            <p>{item.count}</p>
                         </Col>
-                        <Col xs={1}>
-                            {item.price}
+                        <Col xs={4} sm={2} lg={1} className={s.ItemDetail}>
+                            <p>{item.price}</p>
                         </Col>
-                        <Col xs={3}>
+                        <Col xs={5} sm={2} lg={1}>
                             <Button onClick={() => removeFromCart(item.id)} >Eliminar</Button>
                         </Col>
                     </Row>
                 )}
+                <Row className={s.ItemRow + " justify-content-center align-items-center"}>
+                    <Col sm={4} sm={true} className="d-none d-sm-block">
+                    </Col>
+                    <Col sm={2} lg={1} className="d-none d-sm-block">
+                        <strong>{totalItems}</strong>
+                    </Col>
+                    <Col sm={4} lg={2} className="d-none d-sm-block">
+                        <strong>{total}</strong>
+                    </Col>
+                </Row>
+
+                <Row className="justify-content-center align-items-center">
+                    <Col xs={10} className="d-sm-none d-flex justify-content-center">
+                        <p><strong>Total: </strong>{total}</p>
+                    </Col>
+                    <Col xs={10} className="d-flex justify-content-center">
+                        <Button id={s.BuyAll} onClick={buyAll}>Comprar todo</Button>
+                    </Col>
+                </Row>
             </Container>
-            <p>{total}</p>
-            <Button onClick={buyAll}>Comprar todo</Button>
         </React.Fragment>}
 
 

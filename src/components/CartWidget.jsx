@@ -5,12 +5,9 @@ import { CartContext } from './CartContext';
 import { Link } from 'react-router-dom';
 
 export default  function CartWidget() {
-    const { cart } = useContext(CartContext);
-    let itemsAmount = 0;
+    const { cart, getTotalItems } = useContext(CartContext);
 
-    for (let index = 0; index < cart.length; index++) {
-        itemsAmount = itemsAmount + cart[index].count;
-    }
+    let itemsAmount = getTotalItems();
     
     return (
         <> {cart.length > 0 &&

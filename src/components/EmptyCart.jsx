@@ -4,7 +4,6 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import { Link } from 'react-router-dom';
 import s from './Loading.module.css';
-import { Col } from 'react-bootstrap';
 
 export default function EmptyCart() {
   return (

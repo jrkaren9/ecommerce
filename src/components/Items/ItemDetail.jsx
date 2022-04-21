@@ -22,11 +22,14 @@ export default  function ItemDetail({ item, onAdd, amount }) {
                     <div id={s.BuySection} >
                         {amount <= 0 ? 
                             <ItemCount stock={item.stock} initial={item.stock > 0 ? 1 : 0} onAdd={onAdd} /> :
-                            <Col xs={true} className="d-flex flex-column align-items-center">
-                                <Button className={s.GoCart} 
-                                    as={Link} to="/cart">Ir al carrito</Button>
-                                <p className={s.GoCartText}>Ya añadiste este producto al carrito!</p>
-                            </Col>
+                            <>
+                                <ItemCount stock={item.stock} initial={item.stock > 0 ? 1 : 0} onAdd={onAdd} />
+                                <Col xs={true} className="d-flex flex-column align-items-center">
+                                    <Button className={s.GoCart} 
+                                        as={Link} to="/cart">Ir al carrito</Button>
+                                    <p className={s.GoCartText}>Ya añadiste este producto al carrito!</p>
+                                </Col>
+                            </>
                         }
                     </div>
                 </Col>

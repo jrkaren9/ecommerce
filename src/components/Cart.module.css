@@ -1,0 +1,23 @@
+p {
+    margin: 0;
+}
+
+#ItemHeader {
+    margin-bottom: 0.5rem;
+}
+
+#ItemsList {
+    padding: 2rem;
+}
+
+#BuyAll {
+    min-width: 200px;
+    margin-top: 1rem;
+}
+
+.ItemRow {
+    padding: 0.5rem 0;
+    border-width: 1px 0 0;
+    border-style: solid;
+    border-color: #000;
+}
