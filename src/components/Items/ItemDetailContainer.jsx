@@ -4,7 +4,7 @@ import { getProduct } from '../products.js'
 import { useParams } from 'react-router-dom';
 import LoadingMessage from '../LoadingMessage';
 import { CartContext } from '../CartContext';
-import { collection, getDocs, getFirestore } from 'firebase/firestore';
+import { doc, getDoc, getFirestore } from 'firebase/firestore';
 
 export default  function ItemDetailContainer() {
 
@@ -16,10 +16,18 @@ export default  function ItemDetailContainer() {
     const { addToCart } = useContext(CartContext);
 
     useEffect(() => {
-        getProduct(id)
-        .then((res) => setitem(res))
+        
+        const db = getFirestore();
+        const product = doc(db, 'products', id);
+        getDoc(product).then( (snapshot) => {
+            if(snapshot.exists()) {
+                setitem({ id: snapshot.id, ...snapshot.data() })
+                console.log({ id: snapshot.id, ...snapshot.data() })
+            }
+        })
         .catch((error) => console.log(error))
         .finally(() => setLoading(false));
+
 
     }, [id]);
 

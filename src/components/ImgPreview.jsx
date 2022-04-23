@@ -17,7 +17,7 @@ export default function ImgPreview({ item }) {
             <Col xs={{order: 'last'}} sm={{span: 3, order: 2}} md={{order: 'first'}}
                 className={s.ImgList + " d-flex flex-sm-column justify-content-center justify-content-sm-start"}>
 
-                {item.all_imgs.map((small_img, index) => (
+                {item.all_imgs && item.all_imgs.map((small_img, index) => (
                     <React.Fragment key={small_img} >
                         <img src={small_img} alt={"Imagen del producto: " + item.name} className={s.PreviewImage + " align-self-end"} onClick={ () => {handleClick(small_img)} }/> 
                     </React.Fragment>
