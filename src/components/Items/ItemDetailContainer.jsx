@@ -4,6 +4,7 @@ import { getProduct } from '../products.js'
 import { useParams } from 'react-router-dom';
 import LoadingMessage from '../LoadingMessage';
 import { CartContext } from '../CartContext';
+import { collection, getDocs, getFirestore } from 'firebase/firestore';
 
 export default  function ItemDetailContainer() {
 
@@ -24,8 +25,6 @@ export default  function ItemDetailContainer() {
 
     const onAdd = (count) => {
         setAmount(count);
-        alert("Agregaste " + count + " items al carrito");
-
         addToCart({ ...item, count});
     }
 
