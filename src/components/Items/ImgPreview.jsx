@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import s from './Items/ItemDetail.module.css';
+import s from './ItemDetail.module.css';
 
 export default function ImgPreview({ item }) {
     const [imgURL, setImg] = useState(item.img);

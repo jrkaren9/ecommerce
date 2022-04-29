@@ -1,7 +1,9 @@
 import React from 'react';
-import { Button, Card, Col } from 'react-bootstrap';
+import Col from 'react-bootstrap/Col';
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
 import s from './Item.module.css';
-import button from '../Buttons.module.css';
+import button from '../general/Buttons.module.css';
 import { Link } from 'react-router-dom';
 
 export default  function Item({ item }) {

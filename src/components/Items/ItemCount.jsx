@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import s from './ItemCount.module.css'
-import button from '../Buttons.module.css';
+import button from '../general/Buttons.module.css';
 import Button from 'react-bootstrap/Button';
 
 export default function ItemCount({ stock, initial, onAdd }) {

@@ -4,10 +4,10 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
-import ImgPreview from '../ImgPreview';
+import ImgPreview from './ImgPreview';
 import ItemCount from './ItemCount';
 import s from './ItemDetail.module.css'
-import button from '../Buttons.module.css';
+import button from '../general/Buttons.module.css';
 
 export default  function ItemDetail({ item, onAdd, amount, amountInCart }) {
     const available = item.stock - amountInCart;

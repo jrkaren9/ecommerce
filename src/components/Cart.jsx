@@ -6,7 +6,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import EmptyCart from './EmptyCart';
 import s from './Cart.module.css'
-import button from './Buttons.module.css';
+import button from './general/Buttons.module.css';
 
 export default function Cart() {
 

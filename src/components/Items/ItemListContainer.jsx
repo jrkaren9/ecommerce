@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import ItemList from './ItemList';
-import { getProducts } from '../products.js'
 import { useParams } from 'react-router-dom';
-import LoadingMessage from '../LoadingMessage';
+import LoadingMessage from '../general/LoadingMessage';
 import { collection, getDocs, getFirestore, query, where } from 'firebase/firestore';
 
 export default  function ItemListContainer() {

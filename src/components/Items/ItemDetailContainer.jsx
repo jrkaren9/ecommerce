@@ -1,8 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import ItemDetail from './ItemDetail';
-import { getProduct } from '../products.js'
 import { useParams } from 'react-router-dom';
-import LoadingMessage from '../LoadingMessage';
+import LoadingMessage from '../general/LoadingMessage';
 import { CartContext } from '../CartContext';
 import { doc, getDoc, getFirestore } from 'firebase/firestore';
 
