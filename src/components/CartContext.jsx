@@ -41,6 +41,14 @@ export default function CartContextProvider({ children }) {
         return itemsAmount;
     }
 
+    const getTotalCost = () => {
+        const total = cart.reduce( (total, item) => {
+            return total + Number(item.price.replace('$', ''))*item.count
+        }, 0);
+
+        return "$" + parseFloat(total).toFixed(2);
+    }
+
     const getProductAmount = (id) => {
         const filter = cart.filter(cartItem => cartItem.id === id);
         return filter.length > 0 ? filter[0].count : 0;
@@ -51,7 +59,7 @@ export default function CartContextProvider({ children }) {
     }
 
     return (
-        <CartContext.Provider value={{cart, addToCart, removeFromCart, buyAll, getTotalItems, getProductAmount}} >
+        <CartContext.Provider value={{cart, addToCart, removeFromCart, buyAll, getTotalItems, getTotalCost, getProductAmount}} >
             {children}
         </CartContext.Provider>
     )

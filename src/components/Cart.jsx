@@ -11,19 +11,9 @@ import button from './general/Buttons.module.css';
 
 export default function Cart() {
 
-    const { cart, removeFromCart, getTotalItems } = useContext(CartContext);
-    const [total, setTotal] = useState("$0.00");
-    const [totalItems, setTotalItems] = useState(0);
-
-    useEffect(() => {
-        let value = cart.reduce( (total, item) => {
-            return total + Number(item.price.replace('$', ''))*item.count
-        }, 0);
-
-        setTotal("$" + parseFloat(value).toFixed(2));
-
-        setTotalItems(getTotalItems);
-    }, [cart, getTotalItems]);
+    const { cart, removeFromCart, getTotalItems, getTotalCost } = useContext(CartContext);
+    const total = useState(getTotalCost());
+    const totalItems = getTotalItems();
 
     return (
         <>

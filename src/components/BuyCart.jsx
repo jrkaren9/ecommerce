@@ -9,10 +9,11 @@ import s from './BuyCart.module.css';
 import button from './general/Buttons.module.css'
 import { CartContext } from './CartContext';
 
-export default function BuyCart({ items }) {
+export default function BuyCart() {
 
     const [orderId, setOrderId] = useState("");
-    const { buyAll } = useContext(CartContext);
+    const { cart, buyAll, getTotalCost } = useContext(CartContext);
+    const total = getTotalCost();
 
     const [ form, setForm ] = useState({});
     const [ errors, setErrors ] = useState({});
@@ -62,9 +63,10 @@ export default function BuyCart({ items }) {
 
     const sendOrder = () => {
         console.log(form);
+        
         const order = {
             buyer: { name: form.name, phone: form.phoneNumber, email: form.email },
-            items: { test: "test" },
+            items: { cart },
             total: ""
         }
 
@@ -119,11 +121,21 @@ export default function BuyCart({ items }) {
         <Container id={s.BuySection}>
             <Row>
 
-                <Col xs={12} sm={true}>
+                <Col xs={12} sm={5}>
                     <p> Estás a punto de comprar: </p>
+                    {
+                        cart.map( cartItem => {
+                            return <>
+                                <p key={cartItem.id}>
+                                    {cartItem.count} x {cartItem.name}
+                                </p>
+                            </>
+                        })
+                    }
+                    <p>Por un total de: {total}</p>
                 </Col>
 
-                <Col xs={12} sm={8}>
+                <Col xs={12} sm={7}>
                     <Form id={s.BuyForm} noValidate onSubmit={handleSubmit}>
                         <Form.Group controlId="validationCustomUsername">
                             <Form.Label>Nombre de usuario</Form.Label>
@@ -135,7 +147,7 @@ export default function BuyCart({ items }) {
                                     setField('name', e.currentTarget.value)
                                 }}
                                 isInvalid={ !!errors.name }
-                                isValid={ !!!errors.name }
+                                isValid={ !!!errors.name && form.name }
                                 required
                             />
                             <Form.Control.Feedback type="invalid">
@@ -153,7 +165,7 @@ export default function BuyCart({ items }) {
                                     setField('phoneNumber', e.currentTarget.value)
                                 }}
                                 isInvalid={ !!errors.phoneNumber }
-                                isValid={ !!!errors.phoneNumber }
+                                isValid={ !!!errors.phoneNumber && form.phoneNumber }
                                 required
                             />
                             <Form.Control.Feedback type="invalid">
@@ -171,7 +183,7 @@ export default function BuyCart({ items }) {
                                     setField('email', e.currentTarget.value)
                                 }}
                                 isInvalid={ !!errors.email }
-                                isValid={ !!!errors.email }
+                                isValid={ !!!errors.email && form.email}
                                 required
                             />
                             <Form.Control.Feedback type="invalid">
