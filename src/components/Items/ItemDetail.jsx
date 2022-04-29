@@ -9,8 +9,10 @@ import ItemCount from './ItemCount';
 import s from './ItemDetail.module.css'
 import button from '../Buttons.module.css';
 
-export default  function ItemDetail({ item, onAdd, amount }) {
-
+export default  function ItemDetail({ item, onAdd, amount, amountInCart }) {
+    const available = item.stock - amountInCart;
+    console.log(available);
+    
     return (
         <>
         <Container id={s.ItemDetail} fluid>
@@ -22,11 +24,11 @@ export default  function ItemDetail({ item, onAdd, amount }) {
                 <Col xs={10} sm={10} md={4} >
                     <div id={s.BuySection} >
                         <p id={s.Price}>Precio: {item.price}</p>
-                        <ItemCount stock={item.stock} initial={item.stock > 0 ? 1 : 0} onAdd={onAdd} /> 
+                        <ItemCount stock={available} initial={available > 0 ? 1 : 0} onAdd={onAdd} /> 
                         {amount > 0 ? 
                             <>
                                 <Col xs={true} className="d-flex flex-column align-items-end">
-                                    <p className={s.GoCartText}>Ya añadiste este producto al carrito!</p>
+                                    <p className={s.GoCartText}>¡Ya añadiste {amountInCart} unidades de este producto al carrito!</p>
                                     <Button className={s.GoCart + " " + button.Primary} 
                                         as={Link} to="/cart">Ir al carrito</Button>
                                 </Col>

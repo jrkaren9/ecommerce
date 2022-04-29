@@ -31,7 +31,7 @@ export default function ImgPreview({ item }) {
 
             <Col xs={{span:12, order: 'first' }} sm={{span:12}} md={{span:4, order: 'last'}} >
                 <h2>{item.name}</h2>
-                <p>{item.text}</p>
+                <p className={s.ItemText}>{item.text}</p>
             </Col>    
 
         </Row>  

@@ -12,7 +12,7 @@ export default function Cart() {
 
     const { cart, buyAll, removeFromCart, getTotalItems } = useContext(CartContext);
     const [total, setTotal] = useState("$0.00");
-    const [totalItems, setTotalItems] = useState(0)
+    const [totalItems, setTotalItems] = useState(0);
 
     useEffect(() => {
         let value = cart.reduce( (total, item) => {
@@ -21,8 +21,8 @@ export default function Cart() {
 
         setTotal("$" + parseFloat(value).toFixed(2));
 
-        setTotalItems(getTotalItems());
-    }, [cart]);
+        setTotalItems(getTotalItems);
+    }, [cart, getTotalItems]);
 
     return (
         <>
@@ -45,7 +45,7 @@ export default function Cart() {
                 {cart.map(item => 
                     <Row key={item.id} className={s.ItemRow + " justify-content-center align-items-center"}>
                         <Col xs={12} sm={true} className={s.ItemDetail}>
-                            <p>{item.name}</p>
+                            <p className={s.ProductName}>{item.name}</p>
                         </Col>
                         <Col xs={3} sm={2} lg={1} className={s.ItemDetail}>
                             <p>{item.count}</p>

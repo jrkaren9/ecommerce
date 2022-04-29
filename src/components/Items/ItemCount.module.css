@@ -1,9 +1,9 @@
 #numberInput {
-    border: solid #FBF0D5;
-    border-width: 2px 0;
-    height: 2rem;
-    text-align: center;
-  }
+  border: solid #FBF0D5;
+  border-width: 2px 0;
+  height: 2rem;
+  text-align: center;
+}
   
 #numberInput:focus-visible {
   outline: none;
@@ -35,7 +35,7 @@
 
 .NoPadding {
   padding: 0;
-  max-width: 150px;
+  max-width: 200px;
 }
 
 .AfterCount {

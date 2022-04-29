@@ -12,7 +12,8 @@ export default function ItemCount({ stock, initial, onAdd }) {
 
     useEffect(() => {
         count <= 0 ? setDisableAdd(true) : setDisableAdd(false);
-    }, [count])
+        count > stock ? setCount(stock) : setCount(count);
+    }, [count, stock])
 
     let btnDisabled = stock <= 0
 
@@ -48,7 +49,7 @@ export default function ItemCount({ stock, initial, onAdd }) {
         <Row className="justify-content-center">
             <Col className={s.NoPadding + " " + s.AfterCount + " d-flex justify-content-center"}>
                 {btnDisabled ? 
-                    (<p>Lo sentimos, por ahora no hay stock</p>) :
+                    (<p>Lo sentimos, por ahora no hay más stock</p>) :
                     (<Button type="button" 
                         className={button.Primary + " d-flex align-items-center justify-content-center"}
                         disabled={disableAdd} onClick={() => onAdd(count)}>

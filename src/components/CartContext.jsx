@@ -17,7 +17,6 @@ export default function CartContextProvider({ children }) {
             setCart([...cart, item]);
     }
 
-    
     const removeFromCart = (id) => {
         if (isInCart(id))
             setCart(cart.filter( item => item.id !== id));
@@ -42,12 +41,17 @@ export default function CartContextProvider({ children }) {
         return itemsAmount;
     }
 
+    const getProductAmount = (id) => {
+        const filter = cart.filter(cartItem => cartItem.id === id);
+        return filter.length > 0 ? filter[0].count : 0;
+    }
+
     const isInCart = (id) => {
         return cart.findIndex(cartItem => cartItem.id === id) >= 0 ? true : false;
     }
 
     return (
-        <CartContext.Provider value={{cart, addToCart, removeFromCart, buyAll, getTotalItems}} >
+        <CartContext.Provider value={{cart, addToCart, removeFromCart, buyAll, getTotalItems, getProductAmount}} >
             {children}
         </CartContext.Provider>
     )

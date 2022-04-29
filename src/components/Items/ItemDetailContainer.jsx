@@ -11,24 +11,22 @@ export default  function ItemDetailContainer() {
     const [item, setitem] = useState({});
     const [loading, setLoading] = useState(true);
     const [amount, setAmount] = useState(0);
+    const [amountInCart, setAmountInCart] = useState(0);
     const { id } = useParams();
-
-    const { addToCart } = useContext(CartContext);
+    const { addToCart, getProductAmount } = useContext(CartContext);
 
     useEffect(() => {
-        
         const db = getFirestore();
         const product = doc(db, 'products', id);
         getDoc(product).then( (snapshot) => {
             if(snapshot.exists()) {
                 setitem({ id: snapshot.id, ...snapshot.data() });
+                setAmountInCart(getProductAmount(snapshot.id));
             }
         })
         .catch((error) => console.log(error))
         .finally(() => setLoading(false));
-
-
-    }, [id]);
+    }, [id, getProductAmount]);
 
     const onAdd = (count) => {
         setAmount(count);
@@ -38,7 +36,9 @@ export default  function ItemDetailContainer() {
     return (
         <>
             {
-                loading ? (<LoadingMessage />) : (<ItemDetail item = {item} onAdd = {onAdd} amount={amount}/>)
+                loading ? 
+                    (<LoadingMessage />) : 
+                    (<ItemDetail item={item} onAdd={onAdd} amount={amount} amountInCart={amountInCart} />)
             }
         </>
     );

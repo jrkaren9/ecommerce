@@ -20,3 +20,13 @@ p {
     border-style: solid;
     border-color: #000;
 }
+
+p.ProductName {
+    margin-bottom: 1rem;
+}
+
+@media only screen and (min-width: 575px) {
+    p.ProductName {
+        margin-bottom: 0;
+    }
+}
