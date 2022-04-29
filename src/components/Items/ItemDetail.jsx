@@ -11,7 +11,6 @@ import button from '../general/Buttons.module.css';
 
 export default  function ItemDetail({ item, onAdd, amount, amountInCart }) {
     const available = item.stock - amountInCart;
-    console.log(available);
     
     return (
         <>
@@ -25,7 +24,7 @@ export default  function ItemDetail({ item, onAdd, amount, amountInCart }) {
                     <div id={s.BuySection} >
                         <p id={s.Price}>Precio: {item.price}</p>
                         <ItemCount stock={available} initial={available > 0 ? 1 : 0} onAdd={onAdd} /> 
-                        {amount > 0 ? 
+                        {amountInCart > 0 ? 
                             <>
                                 <Col xs={true} className="d-flex flex-column align-items-end">
                                     <p className={s.GoCartText}>¡Ya añadiste {amountInCart} unidades de este producto al carrito!</p>

@@ -1,16 +1,17 @@
 import Button from 'react-bootstrap/Button';
 import React, { useContext, useEffect, useState } from 'react'
-import { CartContext } from './CartContext'
+import { Link } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import { CartContext } from './CartContext'
 import EmptyCart from './EmptyCart';
 import s from './Cart.module.css'
 import button from './general/Buttons.module.css';
 
 export default function Cart() {
 
-    const { cart, buyAll, removeFromCart, getTotalItems } = useContext(CartContext);
+    const { cart, removeFromCart, getTotalItems } = useContext(CartContext);
     const [total, setTotal] = useState("$0.00");
     const [totalItems, setTotalItems] = useState(0);
 
@@ -76,7 +77,7 @@ export default function Cart() {
                         <p><strong>Total: </strong>{total}</p>
                     </Col>
                     <Col xs={10} className="d-flex justify-content-center">
-                        <Button id={s.BuyAll} onClick={buyAll} className={button.Primary}>Comprar todo</Button>
+                        <Button id={s.BuyAll} className={button.Primary} as={Link} to="/buyCart">Comprar todo</Button>
                     </Col>
                 </Row>
             </Container>
