@@ -11,8 +11,6 @@ import { CartContext } from './CartContext';
 
 export default function BuyCart({ items }) {
 
-    const [phoneNumber, setPhoneNumber] = useState("");
-    const [email, setEmail] = useState("");
     const [orderId, setOrderId] = useState("");
     const { buyAll } = useContext(CartContext);
 
@@ -24,24 +22,26 @@ export default function BuyCart({ items }) {
           ...form,
           [field]: value
         })
-      };
+        // Check and see if errors exist, and remove them from the error object:
+        if ( !!errors[field] ) setErrors({
+            ...errors,
+            [field]: null
+        })
+    };
 
     const findFormErrors = () => {
-        const { username } = form
+        const { name, phoneNumber, email } = form
         const newErrors = {}
-        
-        validatePhoneNumber(phoneNumber);
-
-        const usernameValidated = validateUsername(username);
-        if (usernameValidated) newErrors.username = usernameValidated;
-
-        // if ( !food || food === '' ) newErrors.food = 'select a food!'
-        // // rating errors
-        // if ( !rating || rating > 5 || rating < 1 ) newErrors.rating = 'must assign a rating between 1 and 5!'
-        // // comment errors
-        // if ( !comment || comment === '' ) newErrors.comment = 'cannot be blank!'
-        // else if ( comment.length > 100 ) newErrors.comment = 'comment is too long!'
     
+        const nameValidated = validateName(name);
+        if (nameValidated) newErrors.name = nameValidated;
+
+        const phoneNumberValidated = validatePhoneNumber(phoneNumber);
+        if (phoneNumberValidated) newErrors.phoneNumber = phoneNumberValidated;
+
+        const emailValidated = validateEmail(email);
+        if (emailValidated) newErrors.email = emailValidated;
+        
         return newErrors;
     }
 
@@ -56,15 +56,14 @@ export default function BuyCart({ items }) {
             setErrors(newErrors);
           } else {
             console.log('Thank you for your feedback!');
+            sendOrder();
           }        
-
-        // sendOrder();
     };
 
     const sendOrder = () => {
-
+        console.log(form);
         const order = {
-            buyer: { name: "", phone: "", email: "" },
+            buyer: { name: form.name, phone: form.phoneNumber, email: form.email },
             items: { test: "test" },
             total: ""
         }
@@ -83,24 +82,37 @@ export default function BuyCart({ items }) {
         
     };
 
-    const validateUsername = (username) => {
-        const regex = /\s\s+/g;
-        regex.test(username) ? 
-            setField('username', username.replace(/\s\s+/g, ' ')) : 
-            setField('username', username);
+    const validateName = (name) => {
+        name = cleanInput(name);
+        setField("name", name);
 
-        if(!username) return "Please enter a username";
-        else if(username.length <= 2) return "Name is too short";
-        else if(username.length >= 20) return "Name is too long";
+        if(!name) return "Ingresa un nombre";
+        else if(name.length <= 2) return "El nombre es muy corto";
+        else if(name.length >= 20) return "El nombre es muy largo";
     }
 
     const validatePhoneNumber = phoneNumber => {
+        phoneNumber = cleanInput(phoneNumber);
+        setField("phoneNumber", phoneNumber);
+
         const regex = /^\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})$/;
-        return regex.test(phoneNumber);
+
+        if(!phoneNumber) return "Ingresa un número de teléfono";
+        else if(!regex.test(phoneNumber)) return "Ingresa un número de teléfono válido (123-123-1234)";
     }
 
     const validateEmail = email => {
-        return email;
+        email = cleanInput(email);
+        setField("email", email);
+
+        if(!email) return "Ingresa un email";
+        else if(email.length <= 2) return "Ingresa un email válido";;
+    }
+
+    const cleanInput = input => {
+        const regex = /\s\s+/g;
+        return regex.test(input) ? 
+            input.replace(/\s\s+/g, ' ') : input
     }
 
     return (
@@ -113,54 +125,57 @@ export default function BuyCart({ items }) {
 
                 <Col xs={12} sm={8}>
                     <Form id={s.BuyForm} noValidate onSubmit={handleSubmit}>
-                        <Form.Group as={Col} md="4" controlId="validationCustomUsername">
-                            <Form.Label>Username</Form.Label>
+                        <Form.Group controlId="validationCustomUsername">
+                            <Form.Label>Nombre de usuario</Form.Label>
                             <Form.Control
                                 type="text"
-                                placeholder="Username"
-                                value={form.username}
+                                placeholder="Nombre"
+                                value={ form.name }
                                 onChange={(e) => {
-                                    setField('username', e.currentTarget.value)
+                                    setField('name', e.currentTarget.value)
                                 }}
-                                isValid={!errors.username}
+                                isInvalid={ !!errors.name }
+                                isValid={ !!!errors.name }
                                 required
                             />
                             <Form.Control.Feedback type="invalid">
-                                { errors.username }
+                                { errors.name }
                             </Form.Control.Feedback>
                         </Form.Group>
                         
-                        <Form.Group as={Col} md="4" controlId="validationCustomPhoneNumber">
-                            <Form.Label>Phone Number</Form.Label>
+                        <Form.Group controlId="validationCustomPhoneNumber">
+                            <Form.Label>Número de teléfono</Form.Label>
                             <Form.Control
                                 type="text"
-                                placeholder="Phone Number"
-                                value={phoneNumber}
+                                placeholder="Número de teléfono"
+                                value={ form.phoneNumber }
                                 onChange={(e) => {
-                                    setPhoneNumber(e.currentTarget.value)
+                                    setField('phoneNumber', e.currentTarget.value)
                                 }}
-                                isValid={validatePhoneNumber}
+                                isInvalid={ !!errors.phoneNumber }
+                                isValid={ !!!errors.phoneNumber }
                                 required
                             />
                             <Form.Control.Feedback type="invalid">
-                                Please enter a valid phone number.
+                               { errors.phoneNumber }
                             </Form.Control.Feedback>
                         </Form.Group>
 
-                        <Form.Group as={Col} md="4" controlId="validationCustomEmail">
-                            <Form.Label>Phone Number</Form.Label>
+                        <Form.Group controlId="validationCustomEmail">
+                            <Form.Label>Correo electrónico</Form.Label>
                             <Form.Control
                                 type="text"
-                                placeholder="Email"
-                                value={email}
+                                placeholder="Correo electrónico"
+                                value={ form.email }
                                 onChange={(e) => {
-                                    setEmail(e.currentTarget.value)
+                                    setField('email', e.currentTarget.value)
                                 }}
-                                isInvalid={validateEmail}
+                                isInvalid={ !!errors.email }
+                                isValid={ !!!errors.email }
                                 required
                             />
                             <Form.Control.Feedback type="invalid">
-                                Please enter a valid email.
+                                { errors.email }
                             </Form.Control.Feedback>
                         </Form.Group>
 
