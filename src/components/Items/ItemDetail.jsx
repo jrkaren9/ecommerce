@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import ImgPreview from '../ImgPreview';
 import ItemCount from './ItemCount';
 import s from './ItemDetail.module.css'
+import button from '../Buttons.module.css';
 
 export default  function ItemDetail({ item, onAdd, amount }) {
 
@@ -20,16 +21,16 @@ export default  function ItemDetail({ item, onAdd, amount }) {
                 
                 <Col xs={10} sm={10} md={4} >
                     <div id={s.BuySection} >
-                        {amount <= 0 ? 
-                            <ItemCount stock={item.stock} initial={item.stock > 0 ? 1 : 0} onAdd={onAdd} /> :
+                        <p id={s.Price}>Precio: {item.price}</p>
+                        <ItemCount stock={item.stock} initial={item.stock > 0 ? 1 : 0} onAdd={onAdd} /> 
+                        {amount > 0 ? 
                             <>
-                                <ItemCount stock={item.stock} initial={item.stock > 0 ? 1 : 0} onAdd={onAdd} />
-                                <Col xs={true} className="d-flex flex-column align-items-center">
-                                    <Button className={s.GoCart} 
-                                        as={Link} to="/cart">Ir al carrito</Button>
+                                <Col xs={true} className="d-flex flex-column align-items-end">
                                     <p className={s.GoCartText}>Ya añadiste este producto al carrito!</p>
+                                    <Button className={s.GoCart + " " + button.Primary} 
+                                        as={Link} to="/cart">Ir al carrito</Button>
                                 </Col>
-                            </>
+                            </> : ''
                         }
                     </div>
                 </Col>

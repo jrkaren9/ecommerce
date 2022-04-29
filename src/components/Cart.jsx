@@ -6,6 +6,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import EmptyCart from './EmptyCart';
 import s from './Cart.module.css'
+import button from './Buttons.module.css';
 
 export default function Cart() {
 
@@ -53,12 +54,14 @@ export default function Cart() {
                             <p>{item.price}</p>
                         </Col>
                         <Col xs={5} sm={2} lg={1}>
-                            <Button onClick={() => removeFromCart(item.id)} >Eliminar</Button>
+                            <Button onClick={() => removeFromCart(item.id)} className={button.Primary}>
+                                Eliminar
+                            </Button>
                         </Col>
                     </Row>
                 )}
                 <Row className={s.ItemRow + " justify-content-center align-items-center"}>
-                    <Col sm={4} sm={true} className="d-none d-sm-block">
+                    <Col sm={4} md={true} className="d-none d-sm-block">
                     </Col>
                     <Col sm={2} lg={1} className="d-none d-sm-block">
                         <strong>{totalItems}</strong>
@@ -73,7 +76,7 @@ export default function Cart() {
                         <p><strong>Total: </strong>{total}</p>
                     </Col>
                     <Col xs={10} className="d-flex justify-content-center">
-                        <Button id={s.BuyAll} onClick={buyAll}>Comprar todo</Button>
+                        <Button id={s.BuyAll} onClick={buyAll} className={button.Primary}>Comprar todo</Button>
                     </Col>
                 </Row>
             </Container>

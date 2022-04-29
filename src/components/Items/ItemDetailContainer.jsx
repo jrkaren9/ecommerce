@@ -21,8 +21,7 @@ export default  function ItemDetailContainer() {
         const product = doc(db, 'products', id);
         getDoc(product).then( (snapshot) => {
             if(snapshot.exists()) {
-                setitem({ id: snapshot.id, ...snapshot.data() })
-                console.log({ id: snapshot.id, ...snapshot.data() })
+                setitem({ id: snapshot.id, ...snapshot.data() });
             }
         })
         .catch((error) => console.log(error))

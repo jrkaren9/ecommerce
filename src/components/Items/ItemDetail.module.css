@@ -13,13 +13,19 @@
     border: 1px solid rgb(104, 102, 102, 50%);
 }
 
+#Price {
+    display: flex;
+    padding: 0 0 1rem 0;
+}
+
 .GoCart {
     width: fit-content;
-    margin: 1rem auto;
+    margin-top: 1rem;
 }
 
 .GoCartText {
-    text-align: center;
+    text-align: right;
+    margin-top: 3rem;
 }
 
 .ImageShown {

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import s from './ItemCount.module.css'
+import button from '../Buttons.module.css';
 import Button from 'react-bootstrap/Button';
 
 export default function ItemCount({ stock, initial, onAdd }) {
@@ -49,7 +50,7 @@ export default function ItemCount({ stock, initial, onAdd }) {
                 {btnDisabled ? 
                     (<p>Lo sentimos, por ahora no hay stock</p>) :
                     (<Button type="button" 
-                        className="d-flex align-items-center justify-content-center"
+                        className={button.Primary + " d-flex align-items-center justify-content-center"}
                         disabled={disableAdd} onClick={() => onAdd(count)}>
                             Agregar al carrito
                     </Button>)

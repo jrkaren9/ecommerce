@@ -6,3 +6,9 @@
     height: 250px;
     object-fit: cover;
 }
+
+.BuyButton {
+    display: flex;
+    width: fit-content;
+    margin: 1rem 0 0 auto;
+}
