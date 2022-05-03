@@ -1,12 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Navbar, Offcanvas, Container, Nav, NavDropdown } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import CartWidget from '../CartWidget';
+import { ViewPortContext } from '../ViewPortContext';
 
 export default function NavBar()  {
 
     const greeting = 'Disfruta de todos nuestros sabores y productos artesanales hechos con amor'
-    const { width } = useViewport();
+    const { width } = useContext(ViewPortContext);
 
     return (
     <>
@@ -62,22 +63,3 @@ function NavOptions() {
     )
 }
 
-const useViewport = () => {
-    const [width, setWidth] = React.useState(window.innerWidth);
-    // Add a second state variable "height" and default it to the current window height
-    const [height, setHeight] = React.useState(window.innerHeight);
-  
-    React.useEffect(() => {
-      const handleWindowResize = () => {
-        setWidth(window.innerWidth);
-        // Set the height in state as well as the width
-        setHeight(window.innerHeight);
-      }
-  
-      window.addEventListener("resize", handleWindowResize);
-      return () => window.removeEventListener("resize", handleWindowResize);
-    }, []);
-  
-    // Return both the height and width
-    return { width, height };
-  }
