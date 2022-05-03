@@ -70,7 +70,6 @@ export default function BuyCart() {
                 setOrderId(id);
                 buyAll();
                 setOrderId(id);
-
                 setModalShow(true);
             }
         );    
@@ -101,8 +100,11 @@ export default function BuyCart() {
         email = cleanInput(email);
         setEmail(email);
 
+        const regex = /\w+@\w{2,}\.\w{2,}/g;
+
         if(!email) return "Ingresa un email";
-        else if(email.length <= 2) return "Ingresa un email válido";;
+        else if(email.length <= 2) return "El email es muy corto para ser válido";
+        else if (!regex.test(email)) return "Ingresa un email válido";
     }
 
     const cleanInput = input => {
@@ -124,11 +126,11 @@ export default function BuyCart() {
                     <p> Estás a punto de comprar: </p>
                     {
                         cart.map( cartItem => {
-                            return <>
-                                <p key={cartItem.id}>
+                            return <React.Fragment key={cartItem.id}>
+                                <p>
                                     {cartItem.count} x {cartItem.name}
                                 </p>
-                            </>
+                            </React.Fragment>
                         })
                     }
                     <p>Por un total de: {total}</p>
@@ -146,7 +148,6 @@ export default function BuyCart() {
                                     setName(e.currentTarget.value)
                                 }}
                                 isInvalid={ !!errors.name }
-                                isValid={ !!!errors.name }
                                 required
                             />
                             <Form.Control.Feedback type="invalid">
@@ -164,7 +165,6 @@ export default function BuyCart() {
                                     setPhone(e.currentTarget.value)
                                 }}
                                 isInvalid={ !!errors.phone }
-                                isValid={ !!!errors.phone }
                                 required
                             />
                             <Form.Control.Feedback type="invalid">
@@ -182,7 +182,6 @@ export default function BuyCart() {
                                     setEmail(e.currentTarget.value)
                                 }}
                                 isInvalid={ !!errors.email }
-                                isValid={ !!!errors.email }
                                 required
                             />
                             <Form.Control.Feedback type="invalid">

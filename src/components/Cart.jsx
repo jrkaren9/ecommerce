@@ -12,7 +12,7 @@ import button from './general/Buttons.module.css';
 export default function Cart() {
 
     const { cart, removeFromCart, getTotalItems, getTotalCost } = useContext(CartContext);
-    const total = useState(getTotalCost());
+    const total = getTotalCost();
     const totalItems = getTotalItems();
 
     return (
@@ -22,13 +22,19 @@ export default function Cart() {
             <Container id={s.ItemsList} className="col-12 col-sm-10"> 
                 <Row id={s.ItemHeader} className="justify-content-center align-items-center">
                     <Col sm={true} className="d-none d-sm-block">
-                        <p><strong>Producto</strong></p>
+                        <p>
+                            <strong>Producto</strong>
+                        </p>
                     </Col>
                     <Col sm={2} lg={1} className="d-none d-sm-block">
-                        <p><strong>#</strong></p>
+                        <p>
+                            <strong>#</strong>
+                        </p>
                     </Col>
                     <Col sm={2} lg={1} className="d-none d-sm-block">
-                        <p><strong>Costo</strong></p>
+                        <p>
+                            <strong>Costo</strong>
+                        </p>
                     </Col>
                     <Col sm={2} lg={1} className="d-none d-sm-block">
                     </Col>
