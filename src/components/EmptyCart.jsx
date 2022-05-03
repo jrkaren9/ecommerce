@@ -4,7 +4,6 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import { Link } from 'react-router-dom';
 import s from './general/Loading.module.css';
-import button from './general/Buttons.module.css';
 
 
 export default function EmptyCart() {
