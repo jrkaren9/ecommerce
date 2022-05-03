@@ -7,7 +7,7 @@ import s from './Loading.module.css';
 export default function LoadingMessage() {
   return (
     <>
-    <Container>
+    <Container id={s.LoadingBody}>
       <Row className="justify-content-center align-content-end" id={s.LoadingMessage}>
           <h1>Estamos cargando la información</h1>
           <Spinner animation="border" role="status" className={s["spinner-border"]}>

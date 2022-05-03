@@ -1,3 +1,8 @@
+#LoadingBody {
+    height: 70vh;
+    display: block;
+}
+
 #LoadingMessage, #EmptyCart {
     height: 40vh;
 }

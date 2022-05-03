@@ -21,10 +21,10 @@ export default function App() {
           <NavBar />
           <Routes>
             <Route exact path="/" element={ < ItemListContainer /> }/>
-            <Route exact path="/buyCart" element={ < BuyCart /> }/>
             <Route path="/category/:categoryId" element={ < ItemListContainer /> }/>
             <Route path="/item/:id" element={ < ItemDetailContainer /> }/>
             <Route exact path="/cart" element={ < Cart /> }/>
+            <Route exact path="/buyCart" element={ < BuyCart /> }/>
           </Routes>
           <Footer />
         </BrowserRouter>
