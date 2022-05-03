@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react'
-import { addDoc, collection, getFirestore } from 'firebase/firestore';
+import { addDoc, collection, getFirestore, serverTimestamp } from 'firebase/firestore';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
@@ -8,6 +8,7 @@ import Col from 'react-bootstrap/Col';
 import s from './BuyCart.module.css';
 import button from './general/Buttons.module.css'
 import { CartContext } from './CartContext';
+import BuyCartModal from './BuyCartModal';
 
 export default function BuyCart() {
 
@@ -15,30 +16,22 @@ export default function BuyCart() {
     const { cart, buyAll, getTotalCost } = useContext(CartContext);
     const total = getTotalCost();
 
-    const [ form, setForm ] = useState({});
-    const [ errors, setErrors ] = useState({});
+    const [name, setName] = useState("");
+    const [phone, setPhone] = useState("");
+    const [email, setEmail] = useState("");
+    
+    const [errors, setErrors] = useState({});
 
-    const setField = (field, value) => {
-        setForm({
-          ...form,
-          [field]: value
-        })
-        // Check and see if errors exist, and remove them from the error object:
-        if ( !!errors[field] ) setErrors({
-            ...errors,
-            [field]: null
-        })
-    };
+    const [modalShow, setModalShow] = useState(false);
 
     const findFormErrors = () => {
-        const { name, phoneNumber, email } = form
-        const newErrors = {}
+        const newErrors = {};
     
         const nameValidated = validateName(name);
         if (nameValidated) newErrors.name = nameValidated;
 
-        const phoneNumberValidated = validatePhoneNumber(phoneNumber);
-        if (phoneNumberValidated) newErrors.phoneNumber = phoneNumberValidated;
+        const phoneNumberValidated = validatePhoneNumber(phone);
+        if (phoneNumberValidated) newErrors.phone = phoneNumberValidated;
 
         const emailValidated = validateEmail(email);
         if (emailValidated) newErrors.email = emailValidated;
@@ -52,22 +45,21 @@ export default function BuyCart() {
         event.stopPropagation();
         
         const newErrors = findFormErrors();
+        setErrors(newErrors);
 
-        if ( Object.keys(newErrors).length > 0 ) {
-            setErrors(newErrors);
-          } else {
-            console.log('Thank you for your feedback!');
+        if ( Object.keys(newErrors).length <= 0 && cart.length > 0 ) {
             sendOrder();
-          }        
+        }        
     };
 
     const sendOrder = () => {
-        console.log(form);
+        const date = serverTimestamp();
         
         const order = {
-            buyer: { name: form.name, phone: form.phoneNumber, email: form.email },
+            buyer: { name: name, phone: phone, email: email },
             items: { cart },
-            total: ""
+            date: { date },
+            total: total
         }
 
         const db = getFirestore();
@@ -77,7 +69,9 @@ export default function BuyCart() {
             ({ id }) => {
                 setOrderId(id);
                 buyAll();
-                console.log(id);
+                setOrderId(id);
+
+                setModalShow(true);
             }
         );    
         
@@ -86,8 +80,8 @@ export default function BuyCart() {
 
     const validateName = (name) => {
         name = cleanInput(name);
-        setField("name", name);
-
+        setName(name);
+ 
         if(!name) return "Ingresa un nombre";
         else if(name.length <= 2) return "El nombre es muy corto";
         else if(name.length >= 20) return "El nombre es muy largo";
@@ -95,7 +89,7 @@ export default function BuyCart() {
 
     const validatePhoneNumber = phoneNumber => {
         phoneNumber = cleanInput(phoneNumber);
-        setField("phoneNumber", phoneNumber);
+        setPhone(phoneNumber);
 
         const regex = /^\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})$/;
 
@@ -105,7 +99,7 @@ export default function BuyCart() {
 
     const validateEmail = email => {
         email = cleanInput(email);
-        setField("email", email);
+        setEmail(email);
 
         if(!email) return "Ingresa un email";
         else if(email.length <= 2) return "Ingresa un email válido";;
@@ -118,9 +112,14 @@ export default function BuyCart() {
     }
 
     return (
+        <>
+        <BuyCartModal
+            id={orderId}
+            show={modalShow}
+            onHide={() => setModalShow(false)}
+        />
         <Container id={s.BuySection}>
             <Row>
-
                 <Col xs={12} sm={5}>
                     <p> Estás a punto de comprar: </p>
                     {
@@ -138,16 +137,16 @@ export default function BuyCart() {
                 <Col xs={12} sm={7}>
                     <Form id={s.BuyForm} noValidate onSubmit={handleSubmit}>
                         <Form.Group controlId="validationCustomUsername">
-                            <Form.Label>Nombre de usuario</Form.Label>
+                            <Form.Label>Nombre</Form.Label>
                             <Form.Control
                                 type="text"
                                 placeholder="Nombre"
-                                value={ form.name }
+                                value={ name }
                                 onChange={(e) => {
-                                    setField('name', e.currentTarget.value)
+                                    setName(e.currentTarget.value)
                                 }}
                                 isInvalid={ !!errors.name }
-                                isValid={ !!!errors.name && form.name }
+                                isValid={ !!!errors.name }
                                 required
                             />
                             <Form.Control.Feedback type="invalid">
@@ -160,16 +159,16 @@ export default function BuyCart() {
                             <Form.Control
                                 type="text"
                                 placeholder="Número de teléfono"
-                                value={ form.phoneNumber }
+                                value={ phone }
                                 onChange={(e) => {
-                                    setField('phoneNumber', e.currentTarget.value)
+                                    setPhone(e.currentTarget.value)
                                 }}
-                                isInvalid={ !!errors.phoneNumber }
-                                isValid={ !!!errors.phoneNumber && form.phoneNumber }
+                                isInvalid={ !!errors.phone }
+                                isValid={ !!!errors.phone }
                                 required
                             />
                             <Form.Control.Feedback type="invalid">
-                               { errors.phoneNumber }
+                               { errors.phone }
                             </Form.Control.Feedback>
                         </Form.Group>
 
@@ -178,12 +177,12 @@ export default function BuyCart() {
                             <Form.Control
                                 type="text"
                                 placeholder="Correo electrónico"
-                                value={ form.email }
+                                value={ email }
                                 onChange={(e) => {
-                                    setField('email', e.currentTarget.value)
+                                    setEmail(e.currentTarget.value)
                                 }}
                                 isInvalid={ !!errors.email }
-                                isValid={ !!!errors.email && form.email}
+                                isValid={ !!!errors.email }
                                 required
                             />
                             <Form.Control.Feedback type="invalid">
@@ -191,14 +190,13 @@ export default function BuyCart() {
                             </Form.Control.Feedback>
                         </Form.Group>
 
-                        <Button variant="primary" type="submit" className={button.Primary}>
-                            Submit
+                        <Button variant="primary" type="submit" className={button.Primary} id={s.BuyButton}>
+                            Comprar
                         </Button>
                     </Form>
                 </Col>
-
-                
             </Row>
         </Container>
+        </>
     )
 }

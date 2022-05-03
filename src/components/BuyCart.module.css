@@ -5,3 +5,19 @@
 #BuySection {
     padding: 4rem 2rem;
 }
+
+#BuyButton {
+    margin-top: 2rem;
+}
+
+#VenchiImage {
+    display: none;
+}
+
+@media only screen and (min-width: 576px) {
+    #VenchiImage {
+        display: flex;
+        margin: auto;
+        max-width: 200px;
+    }
+}

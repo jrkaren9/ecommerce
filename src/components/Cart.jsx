@@ -52,13 +52,15 @@ export default function Cart() {
                     </Row>
                 )}
                 <Row className={s.ItemRow + " justify-content-center align-items-center"}>
-                    <Col sm={4} md={true} className="d-none d-sm-block">
+                    <Col sm={true} className="d-none d-sm-block">
                     </Col>
                     <Col sm={2} lg={1} className="d-none d-sm-block">
                         <strong>{totalItems}</strong>
                     </Col>
-                    <Col sm={4} lg={2} className="d-none d-sm-block">
+                    <Col sm={2} lg={1} className="d-none d-sm-block">
                         <strong>{total}</strong>
+                    </Col>
+                    <Col sm={2} lg={1} className="d-none d-sm-block">
                     </Col>
                 </Row>
 
