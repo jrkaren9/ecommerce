@@ -5,12 +5,11 @@ import { CartContext } from './CartContext';
 import { Link } from 'react-router-dom';
 
 export default  function CartWidget() {
-    const { cart, getTotalItems } = useContext(CartContext);
+    const { getTotalItems } = useContext(CartContext);
 
     let itemsAmount = getTotalItems();
     
     return (
-        <> {cart.length > 0 &&
             <React.Fragment>
                 <span>{itemsAmount}</span>
                 <button type="button" aria-expanded="false" aria-label="Cart" className={s.CartWidget} > 
@@ -18,7 +17,6 @@ export default  function CartWidget() {
                     < AiOutlineShoppingCart className={s.colorIcon} size={25} />
                 </Link>
                 </button>
-            </React.Fragment>}
-        </>
+            </React.Fragment>
     );
 }

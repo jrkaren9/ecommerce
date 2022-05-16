@@ -15,7 +15,7 @@ export default function ItemCount({ stock, initial, onAdd }) {
         count > stock ? setCount(stock) : setCount(count);
     }, [count, stock])
 
-    let btnDisabled = stock <= 0
+    const btnDisabled = stock <= 0
 
     const add = () => {
         if(count < stock)

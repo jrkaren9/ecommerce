@@ -21,3 +21,11 @@
         max-width: 200px;
     }
 }
+
+form div+div label {
+    margin-top: 10px;
+}
+
+#CartSummary {
+    margin-bottom: 2rem;
+}

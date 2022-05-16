@@ -20,19 +20,3 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-
-.Nav-Bar {
-  background-color: #FFDB8A;
-}
-
-.Logo {
-  width: 100%;
-  object-fit: cover;
-}
-
-.welcome {
-  padding: 1rem;
-  background-color: #FBF0D5;
-  font-size:0.9rem;
-  text-align: center;
-}

@@ -3,12 +3,14 @@ import ItemList from './ItemList';
 import { useParams } from 'react-router-dom';
 import LoadingMessage from '../general/LoadingMessage';
 import { collection, getDocs, getFirestore, query, where } from 'firebase/firestore';
+import NoResults from '../general/NoResults';
 
 export default  function ItemListContainer() {
 
     const [items, setitems] = useState([]);
 
     const [loading, setLoading] = useState(true);
+    const [noResults, setNoResults] = useState(false);
     const { categoryId } = useParams();
 
     useEffect(() => {
@@ -30,8 +32,12 @@ export default  function ItemListContainer() {
         getDocs(productsQuery).then( 
             (snapshot) => {
                 if(snapshot.size === 0) {
-                    console.log("No results");
+                    setNoResults(true);
                 }
+                else {
+                    setNoResults(false);
+                }
+                
                 setitems(
                     snapshot.docs.map(
                             (doc) => ({ id: doc.id, ...doc.data() })
@@ -44,14 +50,9 @@ export default  function ItemListContainer() {
     
     }, [categoryId]);
 
-    useEffect(() => {
-
-        
-    }, []);
-    
     return (
         <>
-            { loading ? (<LoadingMessage />) : (<ItemList items={items}/>) }
+            { loading ? (<LoadingMessage />) : noResults ? (<NoResults />) : (<ItemList items={items}/>) }
         </>
     );
 }

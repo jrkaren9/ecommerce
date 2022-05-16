@@ -9,7 +9,6 @@ export default  function ItemDetailContainer() {
 
     const [item, setitem] = useState({});
     const [loading, setLoading] = useState(true);
-    const [amount, setAmount] = useState(0);
     const [amountInCart, setAmountInCart] = useState(0);
     const { id } = useParams();
     const { addToCart, getProductAmount } = useContext(CartContext);
@@ -28,7 +27,6 @@ export default  function ItemDetailContainer() {
     }, [id, getProductAmount]);
 
     const onAdd = (count) => {
-        setAmount(count);
         addToCart({ ...item, count});
     }
 
@@ -37,7 +35,7 @@ export default  function ItemDetailContainer() {
             {
                 loading ? 
                     (<LoadingMessage />) : 
-                    (<ItemDetail item={item} onAdd={onAdd} amount={amount} amountInCart={amountInCart} />)
+                    (<ItemDetail item={item} onAdd={onAdd} amountInCart={amountInCart} />)
             }
         </>
     );

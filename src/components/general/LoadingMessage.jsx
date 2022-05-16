@@ -2,7 +2,7 @@ import React from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Spinner from 'react-bootstrap/Spinner'
-import s from './Loading.module.css';
+import s from './ExtraPages.module.css';
 
 export default function LoadingMessage() {
   return (

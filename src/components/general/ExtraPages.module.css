@@ -1,0 +1,41 @@
+#LoadingBody {
+    height: 70vh;
+    display: block;
+}
+
+#LoadingMessage, #EmptyCart {
+    height: 40vh;
+}
+
+#ButtonHome {
+    width: 150px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.spinner-border {
+    height: 7rem;
+    width: 7rem;
+}
+
+#NoResults {
+    height: 70vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.NavBar {
+    background-color: #FFDB8A;
+}
+
+.welcome {
+    padding: 1rem;
+    background-color: #FBF0D5;
+    font-size:0.9rem;
+    text-align: center;
+  }
+  

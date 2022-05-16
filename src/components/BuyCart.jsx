@@ -19,6 +19,7 @@ export default function BuyCart() {
     const [name, setName] = useState("");
     const [phone, setPhone] = useState("");
     const [email, setEmail] = useState("");
+    const [repeatEmail, setRepeatEmail] = useState("");
     
     const [errors, setErrors] = useState({});
 
@@ -35,6 +36,9 @@ export default function BuyCart() {
 
         const emailValidated = validateEmail(email);
         if (emailValidated) newErrors.email = emailValidated;
+
+        const repeatEmailValidated = validateRepeatEmail(repeatEmail);
+        if (repeatEmailValidated) newErrors.repeatEmail = repeatEmailValidated;
         
         return newErrors;
     }
@@ -73,8 +77,6 @@ export default function BuyCart() {
                 setModalShow(true);
             }
         );    
-        
-        
     };
 
     const validateName = (name) => {
@@ -107,7 +109,15 @@ export default function BuyCart() {
         else if (!regex.test(email)) return "Ingresa un email válido";
     }
 
+    const validateRepeatEmail = repeatEmail => {
+        repeatEmail = cleanInput(repeatEmail);
+        setRepeatEmail(repeatEmail);
+
+        if(email !== repeatEmail) return "Los emails son diferentes"
+    }
+
     const cleanInput = input => {
+        input = input.trim();
         const regex = /\s\s+/g;
         return regex.test(input) ? 
             input.replace(/\s\s+/g, ' ') : input
@@ -122,13 +132,13 @@ export default function BuyCart() {
         />
         <Container id={s.BuySection}>
             <Row>
-                <Col xs={12} sm={5}>
+                <Col xs={12} sm={5} id={s.CartSummary}>
                     <p> Estás a punto de comprar: </p>
                     {
                         cart.map( cartItem => {
                             return <React.Fragment key={cartItem.id}>
                                 <p>
-                                    {cartItem.count} x {cartItem.name}
+                                    {cartItem.name}: {cartItem.count} x {cartItem.price}
                                 </p>
                             </React.Fragment>
                         })
@@ -186,6 +196,23 @@ export default function BuyCart() {
                             />
                             <Form.Control.Feedback type="invalid">
                                 { errors.email }
+                            </Form.Control.Feedback>
+                        </Form.Group>
+
+                        <Form.Group controlId="validationRepeatEmail">
+                            <Form.Label>Repite el correo electrónico</Form.Label>
+                            <Form.Control
+                                type="text"
+                                placeholder="Correo electrónico"
+                                value={ repeatEmail }
+                                onChange={(e) => {
+                                    setRepeatEmail(e.currentTarget.value)
+                                }}
+                                isInvalid={ !!errors.repeatEmail }
+                                required
+                            />
+                            <Form.Control.Feedback type="invalid">
+                                { errors.repeatEmail }
                             </Form.Control.Feedback>
                         </Form.Group>
 

@@ -3,7 +3,7 @@ import React from 'react'
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import { Link } from 'react-router-dom';
-import s from './general/Loading.module.css';
+import s from './general/ExtraPages.module.css';
 
 
 export default function EmptyCart() {

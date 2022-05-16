@@ -9,7 +9,7 @@ import ItemCount from './ItemCount';
 import s from './ItemDetail.module.css'
 import button from '../general/Buttons.module.css';
 
-export default  function ItemDetail({ item, onAdd, amount, amountInCart }) {
+export default  function ItemDetail({ item, onAdd, amountInCart }) {
     const available = item.stock - amountInCart;
     
     return (
